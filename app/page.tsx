@@ -12,9 +12,9 @@ export default function Home() {
   const [registeredIPId, setRegisteredIPId] = useState<`0x${string}` | null>(
     null
   );
-  console.log(wallets);
 
   async function setupStoryClient(): Promise<StoryClient> {
+    // this is how you get a WalletClient from Privy
     const wallet = wallets[0];
     await wallet.switchChain(aeneid.id);
     const provider = await wallet.getEthereumProvider();
@@ -24,6 +24,7 @@ export default function Home() {
       transport: custom(provider),
     });
 
+    // set up Story Client
     const config: StoryConfig = {
       wallet: walletClient,
       transport: custom(walletClient.transport),
